@@ -6,18 +6,35 @@
 <body>
 	<h1>Temperature Converter</h1>
 	<br>
-	<input id="temp-field" type="number" name="" value="" placeholder="Temperature">
-	<br>
-	<input id="celsius" type="radio" name="" value="Celsius" placeholder="">
-	<input id="fahrenheit" type="radio" name="" value="Fahrenheit" placeholder="">
-	<br>
-	<input type="submit" name="" value="Convert Temperature">
-	<<input type="button" name="" value="Reset">
-	<br>
+	<div id="input-form"><!-- User input field -->
+		
+		<!--Temperature input-->
+		<input id="temp-field" type="number" name="" value="" placeholder="Temperature">
+		<br><!-- /Temperature input -->
+		
+		<!-- Scale selector -->
+		<radiogroup id="toggle-scale">
+			<label for="celsius">Celsius</label>
+			<input id="celsius" type="radio" name="temp-scale" value="Celsius" placeholder="celsius">
+			<lable for="fahrenheit">Fahrenheit</lable>
+			<input id="fahrenheit" type="radio" name="temp-scale" value="Fahrenheit" placeholder="fahrenheit">
+		</radiogroup>
+		<br><!-- /Scale selector -->
 
+		<!-- Submit/reset -->
+		<input type="submit" name="" value="Convert Temperature">
+		<input id="reset" type="button" name="" value="Reset">
+		<br><!-- /Submit/reset -->
+
+	</div><!-- /User input field -->
+
+	<!-- Output display -->
 	<div id="display">
 		
-	</div>
+	</div><!-- /Output display -->
 
+	<!--Scripts-->
+	<script src="converter.js"></script>
+	<!--/Scripts-->
 </body>
 </html>

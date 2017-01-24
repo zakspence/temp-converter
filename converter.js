@@ -79,34 +79,36 @@ function convert(event) {
 ----------------------------------*/
 
 function colorChange(temp) {
-	display.innerHTML = (function () {
+	display.innerHTML = (function (temp) {
 		//  When the temperature is shown in celsius, color text by heat
-		if (temp.scale === 'celsius' ){
+		
+		if (temp.scale === 'celsius' ){  //  set to blue
 			if (temp.temp < 0 ){
-				return  // blue text
+				return  `<p color='blue'>${temp.temp}</p>`
 
-			} else if (temp.temp > 32 ){
-				return // red text
+			} else if (temp.temp > 32 ){ //  set to red
+				return `<p color='red'>${temp.temp}</p>`
 
-			} else {
-				return // green text
+			} else {					 //  set to green
+				return `<p color='green'>${temp.temp}</p>`
 
 			}
 		}
 		//  When the temperature is shown in fahrenheit, color text by heat
+		
 		else if (temp.scale === 'fahrenheit' ){
 			if (temp.temp < 32 ){
-				return  // blue text
+				return  `<p color='blue'>${temp.temp}</p>`
 
 			} else if (temp.temp > 90 ){
-				return // red text
+				return `<p color='red'>${temp.temp}</p>`
 
 			} else {
-				return // green text
+				return `<p color='green'>${temp.temp}</p>`
 
 			}
 		}
-	}());
+	}(temp));
 }
 
 

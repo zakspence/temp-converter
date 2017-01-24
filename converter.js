@@ -11,7 +11,7 @@ var resetButton = document.getElementById('reset');
 var display = document.getElementById('display');
 
 tempField.addEventListener('keyup', check13);
-submitButton.addEventListener('click', function(){colorChange(convert());});
+submitButton.addEventListener('click', function(event){colorChange(convert(event));});
 resetButton.addEventListener('click', reset);
 
 
@@ -24,7 +24,7 @@ resetButton.addEventListener('click', reset);
 
 function check13(event) {
 	if (event.keykode === 13) {
-		convert(event);
+		convert();
 	}
 }
 
@@ -48,27 +48,28 @@ function reset() {
 ----------------------------------*/
 	
 
-function convert(event) {
-	var userTemp = event.target.value;
+function convert() {
+	var userTemp = tempField.value;
+	console.log(userTemp);
 	var isFahrenheit = checkRadio();
 
 	if (isFahrenheit) {
 
-	//FAHRENHEIT 2 CELSIUS
-	//Deduct 32, then multiply by 5, then divide by 9
-	return celsius = {
-		temp: (userTemp -32) * 5 / 9,
-		scale: 'celsius'
-	};
-
+		//CELSIUS 2 FAHRENHEIT
+		//Multiply by 9, then divide by 5, then add 32
+		return fahrenheit = {
+			temp: ((userTemp * 9 / 5) + 32),
+			scale: 'fahrenheit'
+		};	
 	} else {
 
-	//CELSIUS 2 FAHRENHEIT
-	//Multiply by 9, then divide by 5, then add 32
-	return fahrenheit = {
-		temp: (userTemp * 9 / 5) + 32,
-		scale: 'fahrenheit'
-	};
+		//FAHRENHEIT 2 CELSIUS
+		//Deduct 32, then multiply by 5, then divide by 9
+		return celsius = {
+			temp: ((userTemp -32) * 5 / 9),
+			scale: 'celsius'
+		};
+	}
 }
 
 
@@ -79,36 +80,37 @@ function convert(event) {
 ----------------------------------*/
 
 function colorChange(temp) {
+	console.log('before: ', temp)
 	display.innerHTML = (function (temp) {
-		//  When the temperature is shown in celsius, color text by heat
+		console.log('after: ', temp)
 		
-		if (temp.scale === 'celsius' ){  //  set to blue
+		//  When the temperature is shown in celsius, color text by heat
+		if (temp.scale === 'celsius' ){  
 			if (temp.temp < 0 ){
-				return  `<p color='blue'>${temp.temp}</p>`
+				return  `<p id='blue'>${temp.temp}</p>`//  set to blue
 
-			} else if (temp.temp > 32 ){ //  set to red
-				return `<p color='red'>${temp.temp}</p>`
+			} else if (temp.temp > 32 ){ 
+				return `<p id='red'>${temp.temp}</p>`//  set to red
 
-			} else {					 //  set to green
-				return `<p color='green'>${temp.temp}</p>`
+			} else {					 
+				return `<p id='green'>${temp.temp}</p>`//  set to green
 
 			}
 		}
 		//  When the temperature is shown in fahrenheit, color text by heat
-		
 		else if (temp.scale === 'fahrenheit' ){
 			if (temp.temp < 32 ){
-				return  `<p color='blue'>${temp.temp}</p>`
+				return  `<p id='blue'>${temp.temp}</p>`//  set to blue
 
 			} else if (temp.temp > 90 ){
-				return `<p color='red'>${temp.temp}</p>`
+				return `<p id='red'>${temp.temp}</p>`// set to red
 
 			} else {
-				return `<p color='green'>${temp.temp}</p>`
+				return `<p id='green'>${temp.temp}</p>`// set to green
 
 			}
 		}
-	}(temp));
+	})(temp);
 }
 
 

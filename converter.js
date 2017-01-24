@@ -23,8 +23,9 @@ resetButton.addEventListener('click', reset);
 
 
 function check13(event) {
+	console.log(event);
 	if (event.keykode === 13) {
-		convert();
+		return colorChange(convert(event));
 	}
 }
 
@@ -35,7 +36,7 @@ function checkRadio() {
 }
 
 function reset() {
-	tempField.setAttribute('value', 0);
+	tempField.value = 0;
 	display.innerHTML = '';
 }
 
@@ -110,7 +111,7 @@ function colorChange(temp) {
 
 			}
 		}
-	})(temp);
+	})(temp); // lambda... lambda, lambda, lambda, lambda, lambda...
 }
 
 
